@@ -1,4 +1,7 @@
+<<<<<<< HEAD
+=======
 
+>>>>>>> 2affa2da3ce4545e6096e439a0806d34083cf117
 FROM debian:stretch-slim
 
 RUN apt-get update
@@ -16,9 +19,25 @@ RUN apt-get install -y --allow-unauthenticated oracle-java8-installer
 RUN apt-get install oracle-java8-set-default
 RUN apt-get install -y scala sbt
 
+<<<<<<< HEAD
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install mysql-client mysql-server 
+
+=======
+>>>>>>> 2affa2da3ce4545e6096e439a0806d34083cf117
 EXPOSE 9000
 
 WORKDIR /home/
 RUN git clone https://github.com/playframework/play-scala-slick-example
 WORKDIR /home/play-scala-slick-example/
+<<<<<<< HEAD
+
+RUN apt-get update
+
+RUN mkdir /app
+WORKDIR /app
+COPY ./build.sbt ./
+RUN sbt update
+
+=======
+>>>>>>> 2affa2da3ce4545e6096e439a0806d34083cf117
 CMD sbt run
