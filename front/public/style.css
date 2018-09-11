@@ -1,0 +1,4 @@
+.blue-gradient-background {
+	background:#2193b0;
+	background:linear-gradient(left, #2193b0 0, #6dd5ed 100%);
+}

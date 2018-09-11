@@ -1,0 +1,28 @@
+
+@import play.api.data.Form
+@import play.api.i18n.Messages
+@import play.api.mvc.RequestHeader
+@import org.webjars.play.WebJarsUtil
+@import controllers.AssetsFinder
+@import com.mohiva.play.silhouette.impl.providers.SocialProviderRegistry
+@import forms.SignInForm.Data
+@import b3.inline.fieldConstructor
+
+@(signInForm: Form[Data], socialProviders: SocialProviderRegistry)(implicit request: RequestHeader, messages: Messages, webJarsUtil: WebJarsUtil, assets: AssetsFinder)
+
+@main(messages("Zaloguj się")) {
+    <fieldset class="col-md-6 col-md-offset-3">
+        <legend>@messages("sign.in.credentials")</legend>
+
+        @if(socialProviders.providers.nonEmpty) {
+            <div class="social-providers">
+                <div>
+
+                    <a href="/authenticate/google" class="provider google" title="google"><img src="/assets/images/providers/google.png" width="64px" height="64px" alt="google"></a>
+
+                </div>
+            </div>
+        }
+
+    </fieldset>
+}
