@@ -14,17 +14,23 @@ class NavigationItems extends Component {
         let isLogged = sessionStorage.getItem('log');
         if (isLogged === "true") {
             return ( 
-                <li className = "NavigationItem" > <a href = "http://localhost:9090/signOut"
-                onClick = {
-                    this.clearSession.bind()
-                }> < Icon className = "Icon"
-                name = "sign-out" / > Wyloguj się </a></li >
+                    <li className = "NavigationItem" >
+                    <a href = "http://localhost:9090/signOut" 
+                        onClick = { 
+                            this.clearSession.bind() 
+                        }> 
+                            < Icon className = "Icon" name = "sign-out" / > Log out 
+                        </a>                
+                    </li>
             );
         } else {
             return ( 
-                <li className = "NavigationItem" > <a href = "http://localhost:9090/signIn" > < Icon className = "Icon"
-                name = "sign-in" / > Zaloguj się </a></li >
-            )
+                    <li className = "NavigationItem" >
+                        <a href = "http://localhost:9090/signIn" > 
+                            < Icon className = "Icon" name = "sign-in" / > Log in 
+                        </a>
+                    </li>
+            );
         }
     }
 
@@ -32,23 +38,22 @@ class NavigationItems extends Component {
         let isLogged = sessionStorage.getItem('log');
         if (isLogged === "true") {
             return ( 
-                <NavigationItem link = "/basket" > < Icon className = "Icon"
-                name = "shopping-basket" / >
-                Koszyk </NavigationItem>  
+                <NavigationItem link = "/basket" > 
+                    < Icon className = "Icon" name = "shopping-basket" / > 
+                </NavigationItem>  
             );
         }
     }
 
     render() {
-        return ( 
-            <ul className = "NavigationItems" >
-            <NavigationItem link = "/"
-            exact > < Icon className = "Icon"
-            name = "home" / > Główna </NavigationItem> {
-                this.checkBasket()
-            } {
-                this.checkUserStatus()
-            } </ul>
+        return (             
+            <ul className = "NavigationItems" style={{  top: 10 }}>
+                <NavigationItem link = "/" exact > 
+                    < Icon className = "Icon" name = "home" / >
+                </NavigationItem>
+                { this.checkBasket()}
+                { this.checkUserStatus()}
+            </ul>
         );
     }
 }

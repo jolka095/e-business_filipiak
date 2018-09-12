@@ -85,8 +85,8 @@ export default class Product extends Component {
                 </div>
                 <div className='wrapper text-center'>
                 <div className="btn-group " role="group" aria-label="Basic example">
-                  <a type="button" id={`${prod.id}`} onClick={this.myClick.bind(this,prod.id,prod.name)} className="btn btn-success">Dodaj do koszyka</a>
-                  <a type="button" href={`/komentarze/${prod.id}`} className="btn btn-secondary">Komentarze</a>
+                  <a type="button" id={`${prod.id}`} onClick={this.myClick.bind(this,prod.id,prod.name)} className="btn btn-success">Add to basket</a>
+                  <a type="button" href={`/komentarze/${prod.id}`} className="btn btn-secondary">Reviews</a>
                 </div>
               </div>
               </div>

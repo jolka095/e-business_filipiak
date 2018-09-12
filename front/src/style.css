@@ -1,6 +1,5 @@
 .blue-gradient-background {
 	background:#2193b0;
-	background:linear-gradient(left, #2193b0 0, #6dd5ed 100%);
 }
 
 .logo {
@@ -85,20 +84,19 @@
 {
   margin-right: 5px;
 }
-.col-item .section-qty
-{
-  width: 50%;
-  float: left;
-  border-right: 1px solid #E1E1E1;
-}
-
-.col-item .section-add
-{
-  width: 50%;
-  float: left;
-  padding-left: 10px;
-}
 
 .btn-cart {
   padding-top: 0.25px;
+}
+
+.add_to_cart { 
+  transition: all .2s ease-in-out; 
+}
+.add_to_cart:hover {
+  transform: scale(2);
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
 }

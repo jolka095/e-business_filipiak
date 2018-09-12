@@ -28,20 +28,20 @@ export default class header extends Component {
     return(
       <div>
           <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <a className="navbar-brand" href="/">Sklep</a>
+      <a className="navbar-brand" href="/">Shop</a>
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
       </button>
       <div className="collapse navbar-collapse" id="navbarCollapse">
         <ul className="navbar-nav mr-auto">
           <li className="nav-item">
-            <a className="nav-link" href="koszyk">Koszyk</a>
+            <a className="nav-link" href="koszyk">Basket</a>
           </li>
           <li className="nav-item">
-            <a href="#submenu2" data-toggle="collapse" className="nav-link ">Dodaj</a>
+            <a href="#submenu2" data-toggle="collapse" className="nav-link ">Add</a>
             <ul id="submenu2" className="list-unstyled collapse">
-                <li><a className="nav-link " href="addCategory">Kategorie</a></li>
-                <li><a className="nav-link " href="addProduct">Produkt</a></li>
+                <li><a className="nav-link " href="addCategory">Categories</a></li>
+                <li><a className="nav-link " href="addProduct">Product</a></li>
             </ul>
         </li>
         </ul>

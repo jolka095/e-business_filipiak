@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
 import ProductList from '../ProductList/ProductList';
-import Toolbar from './../Toolbar/Toolbar';
 import './HomePage.css';
-import Footer from './../../components/Footer/Footer';
+// import Toolbar from './../Toolbar/Toolbar';
+// import Footer from './../../components/Footer/Footer';
 
 export default class HomePage extends Component {
 

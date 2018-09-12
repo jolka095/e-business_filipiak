@@ -18,7 +18,7 @@ export default class koszCom extends Component {
     return(
       <div key="kosz1" className="row">
         <div key="kosz2" className="row col-md-12" >
-          <h3 key="kosz2">Mój koszyk</h3>
+          <h3 key="kosz2">My shopping cart</h3>
           <table key="kosz4" className={'table table-hover'}>
             <thead key="kosz5">
             <tr key="kosz6">
@@ -37,7 +37,7 @@ export default class koszCom extends Component {
                     <h5 key="kosz12">{item.liczba}</h5>
                     </td>
                     <td>
-                      <button key="kosz31" id={`${item.id}`} onClick={this.myClick.bind(this,item.id)} className="btn btn-danger">usuń z koszyka</button>
+                      <button key="kosz31" id={`${item.id}`} onClick={this.myClick.bind(this,item.id)} className="btn btn-danger">remove</button>
                     </td>
                   </tr>
                 

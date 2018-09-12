@@ -29,10 +29,10 @@ export default class ProductList extends Component {
         return (
             this.props.categories.map((category, index) => {
             return (
-            <div key={index} className={this.state.activeCategory === category.id ? "category active" : "category"}
+            <li key={index} className={this.state.activeCategory === category.id ? "list-group-item category active" : "list-group-item category"}
                         onClick={() => this.setCategory(category.id)}>
                 {category.name}
-            </div>
+            </li>
             );
         })
     )
@@ -41,14 +41,20 @@ export default class ProductList extends Component {
     render() {
         return (
         <div className="row extra-bottom-margin">
-         <div className="container">
-            <div className="row">
-                <div className="categories-wrapper">
-                {this.renderCategory()}
+            <div className="container">
+                <div className="row">
+
+                    <div className="col-md-3 categories-wrapper">
+                        <ul className="list-group">
+                            {this.renderCategory()}
+                        </ul>
+                    </div>
+
+                    <div className="col-md-9 products-wrapper">
+                        {this.filterProductsByCategory()} 
+                    </div>
                 </div>
-            </div>
-        </div> 
-            {this.filterProductsByCategory()} 
+            </div> 
         </div>
         );
     }     

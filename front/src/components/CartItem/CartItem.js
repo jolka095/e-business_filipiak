@@ -22,24 +22,16 @@ export default class CartItem extends Component {
         const quantity = this.props.item.quantity;
     
         return (
-          <div className="row cart-item">
-            <div className="col-md-6">
-              <h6 className="product-name">{name}</h6>
-            </div>
-            <div className="row col-md-6">
-              <div className="col-md-4 text-center">
-                <h6>{price}</h6>
-              </div>
-              <div className="col-md-4 text-center">
-                <h6>{quantity}</h6>
-              </div>
-              <div className="col-md-4 text-center">
-                <button type="button" className="btn btn-link btn-xs btn-cart" onClick={this.deleteItem.bind(this,id)}>
-                  <Icon name="trash"></Icon>
-                </button>
-              </div>
-            </div>
-          </div>
+          <tr>
+            <td>                
+              <button type="button" className="btn btn-link btn-xs btn-cart" onClick={this.deleteItem.bind(this,id)}>
+                <Icon name="trash"></Icon>
+              </button>
+            </td>
+            <td ><h6 className="product-name">{name}</h6></td>
+            <td ><h6>{quantity}</h6></td>
+            <td ><h6>{price} PLN</h6></td>
+          </tr>
         );
     }
 }
