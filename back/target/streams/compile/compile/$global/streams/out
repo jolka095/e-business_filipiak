@@ -1,5 +1,0 @@
-[warn] C:\Users\jolan\Desktop\bi\app\controllers\ActivateAccountController.scala:49:45: match may not be exhaustive.
-[warn] It would fail on the following input: Some(_)
-[warn]     userService.retrieve(loginInfo).flatMap {
-[warn]                                             ^
-[warn] one warning found
