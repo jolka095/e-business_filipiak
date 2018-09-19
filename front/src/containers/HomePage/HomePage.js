@@ -14,30 +14,34 @@ export default class HomePage extends Component {
 
     componentDidMount() {
         axios.get('http://localhost:9090/products')
-          .then(res => {
-            this.setState({
-              products: res.data
+            .then(res => {
+                this.setState({
+                    products: res.data
+                });
+            })
+            .catch((err) => {
+                console.log(err)
             });
-          })
 
-          axios.get('http://localhost:9090/categories')
-          .then(res => {
-              console.log(res)
-            this.setState({
-              categories: res.data
+        axios.get('http://localhost:9090/categories')
+            .then(res => {
+                console.log(res)
+                this.setState({
+                    categories: res.data
+                });
+            })
+            .catch((err) => {
+                console.log(err)
             });
-          })
     }
 
-    
-
-    render () {
+    render() {
         return (
-          
+
             <div className="Content">
-            <ProductList products={this.state.products} categories={this.state.categories} />  
+                <ProductList products={this.state.products} categories={this.state.categories} />
             </div>
-        
+
         );
     }
 }

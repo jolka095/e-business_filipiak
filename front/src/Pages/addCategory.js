@@ -6,13 +6,11 @@ import Cat from "../Components/addCat"
 
 export default class addCategory extends Component {
 
-  
-  
-  render(){
-    return(
+  render() {
+    return (
       <Fragment>
-            <Header/>
-            <Cat/>
+        <Header />
+        <Cat />
       </Fragment>
     )
   }

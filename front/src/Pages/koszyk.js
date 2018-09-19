@@ -13,18 +13,20 @@ export default class koszyk extends Component {
     axios({
       method: 'get',
       url: `http://localhost:9090/koszyk/${Uid}`
-    }).then((res) => {
-      this.setState({items: res.data})
-    }).catch((err) => {
-      console.log('AXIOS addProduct FAILED', err)
-    });
+    })
+      .then((res) => {
+        this.setState({ items: res.data })
+      })
+      .catch((err) => {
+        console.log('AXIOS addProduct FAILED', err)
+      });
   }
-  
-  render(){
-    return(
+
+  render() {
+    return (
       <Fragment>
-        <Header/>
-        <Kosz items={this.state.items}/>
+        <Header />
+        <Kosz items={this.state.items} />
       </Fragment>
     )
   }

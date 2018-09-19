@@ -5,13 +5,13 @@ import Add from "../Components/addProd"
 
 export default class addProduct extends Component {
 
-  
-    render(){
-        return(
-          <Fragment>
-            <Header/>
-            <Add/>
-          </Fragment>
-        )
-      }
-    }
+
+  render() {
+    return (
+      <Fragment>
+        <Header />
+        <Add />
+      </Fragment>
+    )
+  }
+}
