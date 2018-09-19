@@ -4,25 +4,26 @@
 
 # Home page
 #GET     /product                           controllers.ProductController.index
-POST    /addproduct                 controllers.ProductController.addProduct
-GET     /products                   controllers.ProductController.getProducts
+POST        /addproduct                     controllers.ProductController.addProduct
+GET         /products                       controllers.ProductController.getProducts
+GET         /product/:product_id            controllers.ProductController.getProduct(product_id: Int)
 # kategorie
 #GET     /category                   controllers.CategoryController.index
-POST    /addcategory                controllers.CategoryController.addCategory
-GET     /categories                  controllers.CategoryController.getCategory
+POST        /addcategory                    controllers.CategoryController.addCategory
+GET         /categories                     controllers.CategoryController.getCategory
 
 # opinion
 #GET     /opinion                  controllers.OpinionController.index
-POST    /addopinion              controllers.OpinionController.addOpinion
-GET     /opinions                 controllers.OpinionController.getOpinion
-GET     /opinion/:id                 controllers.OpinionController.getOpinionid(id: Int)
+POST        /addopinion                     controllers.OpinionController.addOpinion
+GET         /opinions                       controllers.OpinionController.getOpinion
+GET         /opinion/:id                    controllers.OpinionController.getOpinionid(id: Int)
 # koszyk
 #GET     /koszyk                  controllers.KoszykController.index
-POST    /addproductkoszyk        controllers.KoszykController.addKoszyk
-GET     /koszyki                 controllers.KoszykController.getKoszyk
+POST        /addproductkoszyk               controllers.KoszykController.addKoszyk
+GET         /koszyki                        controllers.KoszykController.getKoszyk
 
-GET     /koszyk/:id                controllers.KoszykController.getKoszykElem(id: String)
-GET   /deleteproduct/:id           controllers.KoszykController.deleteKoszykItem(id: Int)
+GET         /koszyk/:id                     controllers.KoszykController.getKoszykElem(id: String)
+GET         /deleteproduct/:id              controllers.KoszykController.deleteKoszykItem(id: Int)
 
 GET         /user                           controllers.ApplicationController.getUser
 
@@ -41,5 +42,5 @@ GET         /account/email/:email           controllers.ActivateAccountControlle
 GET         /account/activate/:token        controllers.ActivateAccountController.activate(token: java.util.UUID)
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.versioned(file)
-->        /webjars                        webjars.Routes
+GET         /assets/*file                   controllers.Assets.versioned(file)
+->          /webjars                        webjars.Routes
