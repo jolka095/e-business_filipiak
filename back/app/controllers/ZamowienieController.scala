@@ -13,14 +13,15 @@ import play.api.mvc._
 import scala.concurrent.{ExecutionContext, Future}
 import scala.util.{Failure, Success}
 
-class ZamowienieController @Inject()(zamowienieRepository: ZamowienieRepository, koszykRepository: KoszykRepository,
-                                  cc: MessagesControllerComponents
-                                )(implicit ec: ExecutionContext)
+class ZamowienieController @Inject()(
+                                      zamowienieRepository: ZamowienieRepository,
+                                      koszykRepository: KoszykRepository,
+                                      cc: MessagesControllerComponents
+                                    )
+                                    (implicit ec: ExecutionContext)
   extends MessagesAbstractController(cc) {
 
-  /**
-   * The mapping for the person form.
-   */
+  // mapping
   val zamowienieForm: Form[CreateZamowienieForm] = Form {
     mapping(
       "koszyk" -> number,
@@ -30,54 +31,25 @@ class ZamowienieController @Inject()(zamowienieRepository: ZamowienieRepository,
     )(CreateZamowienieForm.apply)(CreateZamowienieForm.unapply)
   }
 
-  /**
-   * The index action.
-   */
-  /*
-  def index = Action.async { implicit request =>
-    val koszyks = koszykRepository.list()
-    koszyks.map(kos => Ok(views.html.zamowienie(zamowienieForm,kos)))
-
-      /*
-      .onComplete{
-      case Success(categories) => Ok(views.html.index(productForm,categories))
-      case Failure(t) => print("")
-    }*/
-  }
-   */
-
-  /**
-   * The add person action.
-   *
-   * This is asynchronous, since we're invoking the asynchronous methods on PersonRepository.
-   */
-/*
-  def addProduct = Action.async { implicit request =>
-    Ok(views.html.addproduct())
-  }
-*/
-
+  // asynchroniczna akcja - dodanie zamowienia
   def addZamowienie = Action.async { implicit request =>
     // Bind the form first, then fold the result, passing a function to handle errors, and a function to handle succes.
-    var a:Seq[Koszyk] = Seq[Koszyk]()
-    val koszyks = koszykRepository.list().onComplete{
-      case Success(kos) => a= kos
+    var a: Seq[Koszyk] = Seq[Koszyk]()
+    val koszyks = koszykRepository.list().onComplete {
+      case Success(kos) => a = kos
       case Failure(_) => print("fail")
     }
 
-  zamowienieForm.bindFromRequest.fold(
-      // The error function. We return the index page with the error form, which will render the errors.
-      // We also wrap the result in a successful future, since this action is synchronous, but we're required to return
-      // a future because the person creation function returns a future.
+    zamowienieForm.bindFromRequest.fold(
+
       errorForm => {
         Future.successful(
-            Ok("views.html.zamowienie(errorForm,a)")
-          )
+          Ok("views.html.zamowienie(errorForm,a)")
+        )
       },
-      // There were no errors in the from, so create the person.
+      // if there were no errors in the from...
       zamowienie => {
-        zamowienieRepository.create(zamowienie.koszyk, zamowienie.dataZam,zamowienie.address, zamowienie.wartosc).map { _ =>
-          // If successful, we simply redirect to the index page.
+        zamowienieRepository.create(zamowienie.koszyk, zamowienie.dataZam, zamowienie.address, zamowienie.wartosc).map { _ =>
           Ok("successproduct.created")
         }
       }
@@ -85,9 +57,7 @@ class ZamowienieController @Inject()(zamowienieRepository: ZamowienieRepository,
   }
 
 
-  /**
-   * A REST endpoint that gets all the people as JSON.
-   */
+  // A REST endpoint that gets order as JSON.
   def getZamowienie = Action.async { implicit request =>
     zamowienieRepository.list().map { zam =>
       Ok(Json.toJson(zam))
@@ -95,11 +65,5 @@ class ZamowienieController @Inject()(zamowienieRepository: ZamowienieRepository,
   }
 }
 
-/**
- * The create person form.
- *
- * Generally for forms, you should define separate objects to your models, since forms very often need to present data
- * in a different way to your models.  In this case, it doesn't make sense to have an id parameter in the form, since
- * that is generated once it's created.
- */
-case class CreateZamowienieForm(koszyk: Int, dataZam: String,address: String, wartosc: Int)
+// The create order form.
+case class CreateZamowienieForm(koszyk: Int, dataZam: String, address: String, wartosc: Int)

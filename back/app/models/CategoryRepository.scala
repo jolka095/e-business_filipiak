@@ -1,10 +1,10 @@
 package models
 
-import javax.inject.{ Inject, Singleton }
+import javax.inject.{Inject, Singleton}
 import play.api.db.slick.DatabaseConfigProvider
 import slick.jdbc.JdbcProfile
 
-import scala.concurrent.{ Future, ExecutionContext }
+import scala.concurrent.{Future, ExecutionContext}
 
 /**
   * A repository for people.
@@ -12,7 +12,7 @@ import scala.concurrent.{ Future, ExecutionContext }
   * @param dbConfigProvider The Play db config provider. Play will inject this for you.
   */
 @Singleton
-class CategoryRepository @Inject() (dbConfigProvider: DatabaseConfigProvider)(implicit ec: ExecutionContext) {
+class CategoryRepository @Inject()(dbConfigProvider: DatabaseConfigProvider)(implicit ec: ExecutionContext) {
   // We want the JdbcProfile for this provider
   val dbConfig = dbConfigProvider.get[JdbcProfile]
 
@@ -49,7 +49,6 @@ class CategoryRepository @Inject() (dbConfigProvider: DatabaseConfigProvider)(im
   val category = TableQuery[CategoryTable]
 
 
-
   /**
     * Create a person with the given name and age.
     *
@@ -58,7 +57,7 @@ class CategoryRepository @Inject() (dbConfigProvider: DatabaseConfigProvider)(im
     */
   def create(name: String): Future[Category] = db.run {
     // We create a projection of just the name and age columns, since we're not inserting a value for the id column
-    (category.map(c => (c.name))
+    (category.map(c => c.name)
       // Now define it to return the id, because we want to know what id was generated for the person
       returning category.map(_.id)
       // And we define a transformation for the returned value, which combines our original parameters with the
@@ -68,9 +67,7 @@ class CategoryRepository @Inject() (dbConfigProvider: DatabaseConfigProvider)(im
       ) += name
   }
 
-  /**
-    * List all the people in the database.
-    */
+  // list all
   def list(): Future[Seq[Category]] = db.run {
     category.result
   }

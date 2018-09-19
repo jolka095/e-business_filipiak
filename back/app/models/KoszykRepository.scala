@@ -27,16 +27,20 @@ class KoszykRepository @Inject()(dbConfigProvider: DatabaseConfigProvider)(impli
   //import userRepository.UserTable
   //private val prod = TableQuery[UserTable]
 
-   class KoszykTable(tag: Tag) extends Table[Koszyk](tag, "koszyk") {
+  class KoszykTable(tag: Tag) extends Table[Koszyk](tag, "koszyk") {
 
     /** The ID column, which is the primary key, and auto incremented */
     def id = column[Int]("id", O.PrimaryKey, O.AutoInc)
 
     /** The name column */
     def user = column[String]("user")
-    def product  = column[Int]("product")
+
+    def product = column[Int]("product")
+
     def productName = column[String]("productName")
-    def quantity  = column[Int]("quantity")
+
+    def quantity = column[Int]("quantity")
+
     def price = column[Int]("price")
 
     //def user_fk = 1//foreignKey("user_fk",user,prod)(_.id)
@@ -48,7 +52,8 @@ class KoszykRepository @Inject()(dbConfigProvider: DatabaseConfigProvider)(impli
       * In this case, we are simply passing the id, name and page parameters to the Person case classes
       * apply and unapply methods.
       */
-    def * = (id, user, product,productName, quantity, price) <> ((Koszyk.apply _).tupled, Koszyk.unapply)
+    def * = (id, user, product, productName, quantity, price) <> ((Koszyk.apply _).tupled, Koszyk.unapply)
+
     //def * = (id, name) <> ((Category.apply _).tupled, Category.unapply)
   }
 
@@ -57,9 +62,7 @@ class KoszykRepository @Inject()(dbConfigProvider: DatabaseConfigProvider)(impli
     */
 
 
-
-
-   private val koaszyk = TableQuery[KoszykTable]
+  private val koaszyk = TableQuery[KoszykTable]
 
 
   /**
@@ -69,18 +72,18 @@ class KoszykRepository @Inject()(dbConfigProvider: DatabaseConfigProvider)(impli
     * id for that person.
     */
 
-  def create(user1: String,product1: Int,productName:String,quantity:Int,price:Int): Future[Boolean] = {
+  def create(user1: String, product1: Int, productName: String, quantity: Int, price: Int): Future[Boolean] = {
     println(user1);
     db.run(koaszyk.filter(_.user === user1).exists.result).flatMap { exists =>
-      if(exists) {
+      if (exists) {
 
         db.run(koaszyk.filter(_.product === product1).exists.result).flatMap { exists1 =>
-          if(exists1) {
+          if (exists1) {
 
             val id = product1
             val us = user1
 
-            val action = sql"update koszyk set liczba = (liczba+1) where product == $id and user == $us".as[(String)]
+            val action = sql"update koszyk set quantity = (quantity+1) where product == $id and user == $us".as[(String)]
 
             db.run(action).map(res => true)
           }
@@ -88,13 +91,13 @@ class KoszykRepository @Inject()(dbConfigProvider: DatabaseConfigProvider)(impli
             //println(item.product_id + " not exists!!")
             db.run {
 
-              (koaszyk.map(p => (p.user, p.product,p.productName, p.quantity, p.price))
+              (koaszyk.map(p => (p.user, p.product, p.productName, p.quantity, p.price))
 
                 returning koaszyk.map(_.id)
 
-                into {case ((user1,product1,productName,quantity,price),id) => Koszyk(id,user1,product1,productName,quantity,price)}
+                into { case ((user1, product1, productName, quantity, price), id) => Koszyk(id, user1, product1, productName, quantity, price) }
 
-                ) += (user1, product1,productName, quantity,price)
+                ) += (user1, product1, productName, quantity, price)
             }.map(res => true)
           }
         }
@@ -103,13 +106,13 @@ class KoszykRepository @Inject()(dbConfigProvider: DatabaseConfigProvider)(impli
         //println(item.product_id + " not exists!!")
         db.run {
 
-          (koaszyk.map(p => (p.user, p.product,p.productName, p.quantity, p.price))
+          (koaszyk.map(p => (p.user, p.product, p.productName, p.quantity, p.price))
 
             returning koaszyk.map(_.id)
 
-            into {case ((user1,product1,productName,quantity, price),id) => Koszyk(id,user1,product1,productName,quantity,price)}
+            into { case ((user1, product1, productName, quantity, price), id) => Koszyk(id, user1, product1, productName, quantity, price) }
 
-            ) += (user1, product1,productName, quantity, price)
+            ) += (user1, product1, productName, quantity, price)
         }.map(res => true)
       }
     }

@@ -30,7 +30,7 @@ export default class CartItem extends Component {
             </td>
             <td ><h6 className="product-name">{name}</h6></td>
             <td ><h6>{quantity}</h6></td>
-            <td ><h6>{price} PLN</h6></td>
+            <td ><h6>{price} $</h6></td>
           </tr>
         );
     }

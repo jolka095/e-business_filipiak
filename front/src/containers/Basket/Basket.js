@@ -66,7 +66,7 @@ export default class Basket extends Component {
 
     <div className="row ">
       <div className="col-md-6">
-        <h4 className="text-right">Total cost: <strong>{itemsMapped.length > 0 ? totalSum : 0} zł</strong></h4>
+        <h4 className="text-right">Total cost: <strong>{itemsMapped.length > 0 ? totalSum : 0} $</strong></h4>
       </div>
       <div className="col-md-6">
         <button type="button" className="btn btn-danger btn-md" onClick={this.emptyBasket} disabled={itemsMapped.length === 0}>
@@ -124,7 +124,7 @@ export default class Basket extends Component {
 
                 // <div className="row text-center">
                 //   <div className="col-md-9">
-                //     <h4 className="text-right">Suma: <strong>{itemsMapped.length > 0 ? totalSum : 0} zł</strong></h4>
+                //     <h4 className="text-right">Suma: <strong>{itemsMapped.length > 0 ? totalSum : 0} $</strong></h4>
                 //   </div>
                 //   <div className="col-md-3">
                 //     <button type="button" className="btn btn-info btn-sm btn-block" onClick={this.emptyBasket} disabled={itemsMapped.length === 0}>

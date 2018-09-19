@@ -14,17 +14,22 @@
         assets: AssetsFinder
 )
 
-@main(messages("Zaloguj się")) {
-    <fieldset class="col-md-6 col-md-offset-3">
-        @*<legend>@messages("sign.in.credentials")</legend>*@
+    @main(messages("Zaloguj się")) {
+        <fieldset class="col-md-6 col-md-offset-3">
+            @*<legend>@messages("sign.in.credentials")</legend>*@
 
-        @if(socialProviders.providers.nonEmpty) {
-            <div class="social-providers">
-                <h3>Sign up via Google account</h3>
-                <a href="/authenticate/google" class="provider google" title="google" style="width:64px;height:64px;">
-                    <img src="https://pbs.twimg.com/profile_images/972154872261853184/RnOg6UyU_400x400.jpg" width="64px" height="64px" alt="google">
-                </a>
-            </div>
-        }
-    </fieldset>
-}
+            @if(socialProviders.providers.nonEmpty) {
+                <div class="social-providers">
+                    <h3>Sign up via Google account</h3>
+                    <a href="/authenticate/google" class="provider google" title="google" style="width: 64px;
+                        height: 64px;">
+                        <img src="https://pbs.twimg.com/profile_images/972154872261853184/RnOg6UyU_400x400.jpg" width="64px" height="64px" alt="google">
+                    </a>
+                    @*<fb:login-button*@
+                    @*scope="public_profile,email"*@
+                    @*onlogin="checkLoginState();">*@
+                    @*</fb:login-button>*@
+                </div>
+            }
+        </fieldset>
+    }

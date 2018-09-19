@@ -29,10 +29,9 @@ class SocialAuthController @Inject()(
                                       userService: UserService,
                                       authInfoRepository: AuthInfoRepository,
                                       socialProviderRegistry: SocialProviderRegistry
-                                    )(
-                                      implicit
-                                      ex: ExecutionContext
-                                    ) extends AbstractController(components) with I18nSupport with Logger {
+                                    )
+                                    (implicit ex: ExecutionContext)
+  extends AbstractController(components) with I18nSupport with Logger {
 
   /**
     * Authenticates a user against a social provider.
